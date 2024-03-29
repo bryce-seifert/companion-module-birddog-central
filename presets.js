@@ -113,7 +113,7 @@ export function getPresets() {
 		],
 	}
 
-	presets[`deletePlaylisteToGenerator`] = {
+	presets[`deletePlaylistToGenerator`] = {
 		type: 'button',
 		category: 'Generator',
 		name: 'Delete Playlist Source from Generator',
@@ -140,7 +140,7 @@ export function getPresets() {
 		],
 	}
 
-	presets[`playPlatListGenerator`] = {
+	presets[`playPlaylistGenerator`] = {
 		type: 'button',
 		category: 'Generator',
 		name: 'Play Playlist',
@@ -278,7 +278,7 @@ export function getPresets() {
 		],
 	}
 
-	presets[`looptPlaylistGenerator`] = {
+	presets[`loopPlaylistGenerator`] = {
 		type: 'button',
 		category: 'Generator',
 		name: 'Loop Playlist',
@@ -420,7 +420,7 @@ export function getPresets() {
 			],
 		}
 
-		presets[`connectSourcetoDestGroup`] = {
+		presets[`connectSourceToDestGroup`] = {
 			type: 'button',
 			category: 'Connect',
 			name: 'Connect Source to Destination Group',

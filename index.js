@@ -628,5 +628,9 @@ class BirdDogCentralInstance extends InstanceBase {
 		// Return true if different
 		return !(stored.join() == data.join())
 	}
+
+	validName(label) {
+		return label.replace(/[\W]/gi, '_')
+	}
 }
 runEntrypoint(BirdDogCentralInstance, upgradeScripts)

@@ -11,7 +11,7 @@ export function updateVariableDefinitions() {
 		if (this.central.routers.length > 0) {
 			this.central.routers.forEach((element, index) => {
 				let name = element.label
-				name = name.replace(/[\W]/gi, '_')
+				name = this.validName(name)
 				variables.push({ name: 'Router ' + name, variableId: 'router_' + name })
 				variables.push({
 					name: 'Router ' + name + ' current output',
@@ -22,36 +22,40 @@ export function updateVariableDefinitions() {
 
 		if (this.central.generators.length > 0) {
 			this.central.generators.forEach((element, index) => {
-				variables.push({ name: 'Generator ' + element.label, variableId: 'generator_' + element.label })
+				let name = element.label
+				name = this.validName(name)
+				variables.push({ name: 'Generator ' + element.label, variableId: 'generator_' + name })
 				variables.push({
 					name: 'Generator ' + element.label + ' loop',
-					variableId: 'generator_' + element.label + '_loop',
+					variableId: 'generator_' + name + '_loop',
 				})
 				variables.push({
 					name: 'Generator ' + element.label + ' status',
-					variableId: 'generator_' + element.label + '_status',
+					variableId: 'generator_' + name + '_status',
 				})
 			})
 		}
 
 		if (this.central.retransmitters.length > 0) {
 			this.central.retransmitters.forEach((element, index) => {
-				variables.push({ name: 'Retransmitter ' + element.label, variableId: 'retransmitter_' + element.label })
+				let name = element.label
+				name = this.validName(name)
+				variables.push({ name: 'Retransmitter ' + element.label, variableId: 'retransmitter_' + name })
 				variables.push({
 					name: 'Retransmitter ' + element.label + ' audio name',
-					variableId: 'retransmitter_' + element.label + '_audioname',
+					variableId: 'retransmitter_' + name + '_audioname',
 				})
 				variables.push({
 					name: 'Retransmitter ' + element.label + ' audio status',
-					variableId: 'retransmitter_' + element.label + '_audiostatus',
+					variableId: 'retransmitter_' + name + '_audiostatus',
 				})
 				variables.push({
 					name: 'Retransmitter ' + element.label + ' video name',
-					variableId: 'retransmitter_' + element.label + '_videoname',
+					variableId: 'retransmitter_' + name + '_videoname',
 				})
 				variables.push({
 					name: 'Retransmitter ' + element.label + ' video status',
-					variableId: 'retransmitter_' + element.label + '_videostatus',
+					variableId: 'retransmitter_' + name + '_videostatus',
 				})
 			})
 		}
@@ -79,7 +83,7 @@ export function updateVariables() {
 		if (this.central.routers.length > 0) {
 			this.central.routers.forEach((element, index) => {
 				let name = element.label
-				name = name.replace(/[\W]/gi, '_')
+				name = this.validName(name)
 				this.setVariableValues({
 					[`router_${name}`]: element.label,
 					[`router_${name}_output`]: element.name,
@@ -89,21 +93,25 @@ export function updateVariables() {
 
 		if (this.central.generators.length > 0) {
 			this.central.generators.forEach((element, index) => {
+				let name = element.label
+				name = this.validName(name)
 				this.setVariableValues({
-					[`generator_${element.label}`]: element.label,
-					[`generator_${element.label}_loop`]: element.loop,
+					[`generator_${name}`]: element.label,
+					[`generator_${name}_loop`]: element.loop,
 				})
 			})
 		}
 
 		if (this.central.retransmitters.length > 0) {
 			this.central.retransmitters.forEach((element, index) => {
+				let name = element.label
+				name = this.validName(name)
 				this.setVariableValues({
-					[`retransmitter_${element.label}`]: element.label,
-					[`retransmitter_${element.label}_audioname`]: element.AudioNDIname,
-					[`retransmitter_${element.label}_audiostatus`]: element.AudioPlayStatus,
-					[`retransmitter_${element.label}_videoname`]: element.VideoNDIname,
-					[`retransmitter_${element.label}_videostatus`]: element.VideoPlayStatus,
+					[`retransmitter_${name}`]: element.label,
+					[`retransmitter_${name}_audioname`]: element.AudioNDIname,
+					[`retransmitter_${name}_audiostatus`]: element.AudioPlayStatus,
+					[`retransmitter_${name}_videoname`]: element.VideoNDIname,
+					[`retransmitter_${name}_videostatus`]: element.VideoPlayStatus,
 				})
 			})
 		}
