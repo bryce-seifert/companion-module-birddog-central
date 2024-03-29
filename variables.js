@@ -24,15 +24,17 @@ export function updateVariableDefinitions() {
 			this.central.generators.forEach((element, index) => {
 				let name = element.label
 				name = this.validName(name)
-				variables.push({ name: 'Generator ' + element.label, variableId: 'generator_' + name })
-				variables.push({
-					name: 'Generator ' + element.label + ' loop',
-					variableId: 'generator_' + name + '_loop',
-				})
-				variables.push({
-					name: 'Generator ' + element.label + ' status',
-					variableId: 'generator_' + name + '_status',
-				})
+				if (name !== 'SINGLES') {
+					variables.push({ name: 'Generator ' + element.label, variableId: 'generator_' + name })
+					variables.push({
+						name: 'Generator ' + element.label + ' loop',
+						variableId: 'generator_' + name + '_loop',
+					})
+					variables.push({
+						name: 'Generator ' + element.label + ' status',
+						variableId: 'generator_' + name + '_status',
+					})
+				}
 			})
 		}
 
@@ -98,6 +100,7 @@ export function updateVariables() {
 				this.setVariableValues({
 					[`generator_${name}`]: element.label,
 					[`generator_${name}_loop`]: element.loop,
+					[`generator_${name}_status`]: element.status,
 				})
 			})
 		}
